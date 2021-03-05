@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 const Login = () => {
-
+    const history = useHistory()
     const [ username, setusername ] = useState('')
     const [ password, setpassword ] = useState('')
-    const history = useHistory()
+    
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (token) {
+            history.push('/home')
+        }
+    }, [])
 
     const onSubmit= e => {
         e.preventDefault()
@@ -32,12 +38,15 @@ const Login = () => {
     }
 
   return (
-    <StyledForm onSubmit={onSubmit}>
-        <StyledSpan>SignIn</StyledSpan>
-        <StyledInput onChange={e => {setusername(e.target.value)}} placegolder="username" type='text'></StyledInput>
-        <StyledInput onChange={e => {setpassword(e.target.value)}}placegolder="password" type='password'></StyledInput>
-        <StyledInput type='submit'></StyledInput>    
-    </StyledForm>
+    <div>
+        <Link to="/home">Home</Link>
+        <StyledForm onSubmit={onSubmit}>
+            <StyledSpan>SignIn</StyledSpan>
+            <StyledInput onChange={e => {setusername(e.target.value)}} placegolder="username" type='text'></StyledInput>
+            <StyledInput onChange={e => {setpassword(e.target.value)}}placegolder="password" type='password'></StyledInput>
+            <StyledInput type='submit'></StyledInput>    
+        </StyledForm>
+    </div>
   )
 }
 

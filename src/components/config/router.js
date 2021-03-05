@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Redirect, Switch } from 'react-router-d
 import Login from '../screens/login'
 import Clubs from '../screens/clubs'
 import Home from '../screens/home'
+import PrivateRoute from '../utils/privateroute'
 
 const Routes = () => {
     return(
@@ -10,7 +11,7 @@ const Routes = () => {
             <Switch>
                 <Route exact path="/login" component={Login}></Route>
                 <Route exact path="/" component={Home}></Route>
-                <Route exact path="/clubs" component={Clubs}></Route>
+                <PrivateRoute exact path="/clubs" component={Clubs}></PrivateRoute>
                 <Redirect to="/"></Redirect>
             </Switch>
         </Router>
