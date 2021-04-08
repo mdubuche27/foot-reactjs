@@ -24,12 +24,14 @@ const Country = () => {
 
       return (
         <div>
-        <p>Pays</p>
-        {items.map(item => (
-          <StyledLign>
-            <Link to={"/leagues/" + item.country_id}>{item.country_name}</Link>
-          </StyledLign>
-        ))}
+          <p>Pays</p>
+          {console.log(items)}
+          alert(" ")
+          {items.map(item => (
+            <StyledLign>
+              <Link to={"/leagues/" + item.country_id}>{item.country_name}</Link>
+            </StyledLign>
+          ))}
       </div>
       );
     }
